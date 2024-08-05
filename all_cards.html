@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การ์ดสงครามเวียดนาม</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>การ์ดสงครามเวียดนาม</h1>
+        <div id="card-list"></div>
+        <a href="index.html" class="button">กลับสู่หน้าแรก</a>
+    </div>
+    <script>
+        const cardDescriptions = [
+            { description: 'เหตุการณ์สงครามเวียดนาม: การรบในป่าฝน', power: 10, image: '10.png' },
+            { description: 'เหตุการณ์สงครามเวียดนาม: การโจมตีทางอากาศ', power: 9, image: '9.png' },
+            { description: 'เหตุการณ์สงครามเวียดนาม: การต่อสู้ในเมือง', power: 8, image: '8.png' },
+            { description: 'เหตุการณ์สงครามเวียดนาม: การปะทะที่แนวรบ', power: 7, image: '7.png' },
+            { description: 'เหตุการณ์สงครามเวียดนาม: การทิ้งระเบิด', power: 6, image: '6.png' },
+            { description: 'เหตุการณ์สงครามเวียดนาม: การช่วยเหลือผู้บาดเจ็บ', power: 5, image: '5.png' },
+            { description: 'เหตุการณ์สงครามเวียดนาม: การสู้รบของทหาร', power: 4, image: '4.png' },
+            { description: 'เหตุการณ์สงครามเวียดนาม: การเดินทางข้ามแม่น้ำ', power: 3, image: '3.png' },
+            { description: 'เหตุการณ์สงครามเวียดนาม: การป้องกันฐานที่มั่น', power: 2, image: '2.png' },
+            { description: 'เหตุการณ์สงครามเวียดนาม: การสนับสนุนจากพลเรือน', power: 1, image: '1.png' },
+        ];
+
+        const cardList = document.getElementById('card-list');
+
+        cardDescriptions.forEach((card, index) => {
+            const cardDiv = document.createElement('div');
+            cardDiv.classList.add('card');
+
+            cardDiv.innerHTML = `
+                <h3>${card.description}</h3>
+                <p>คะแนน: ${card.power}</p>
+                <img src="${card.image}" alt="Card Image" class="card-image">
+                <a href="card_detail.html?card=${index}" class="button">ข้อมูลเชิงลึก</a>
+            `;
+
+            cardList.appendChild(cardDiv);
+        });
+    </script>
+</body>
+</html>

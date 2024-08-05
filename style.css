@@ -1,0 +1,118 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0e68c; /* Light yellow background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff; /* White container */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #e63946; /* Red color */
+}
+
+h2 {
+    color: #ff6f20; /* Orange color */
+}
+
+ol {
+    padding-left: 20px;
+}
+
+.story-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.button {
+    display: inline-block;
+    background-color: #ff6f20; /* Orange color */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s;
+    margin: 10px 0;
+}
+
+.button:hover {
+    background-color: #e63946; /* Darker red on hover */
+}
+
+#game-board {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.player {
+    background-color: #fff;
+    border: 2px solid #e63946; /* Red border */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 45%; /* Make both player boxes equal width */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.card {
+    background-color: #ffcccb; /* Light red color */
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.score {
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #e63946; /* Red border */
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #ff6f20; /* Orange background for header */
+    color: white;
+}
+
+.image-container {
+    display: flex; /* ใช้ flexbox เพื่อจัดเรียงแนวนอน */
+    justify-content: center; /* จัดให้ภาพอยู่ตรงกลาง */
+    margin: 20px 0; /* เพิ่มระยะห่างด้านบนและล่าง */
+}
+
+.story-image {
+    width: 30%; /* ปรับขนาดภาพเป็น 30% ของความกว้างของ div */
+    margin: 0 10px; /* เพิ่มระยะห่างระหว่างภาพ */
+    border-radius: 8px; /* เพิ่มมุมโค้งให้กับภาพ */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้กับภาพ */
+}
+
+.card-image {
+    max-width: 100%; /* จำกัดขนาดภาพไม่ให้เกินความกว้างของ div */
+    height: auto; /* ปรับสูงให้เหมาะสม */
+    border: 1px solid #ccc; /* ขอบภาพ */
+    border-radius: 5px; /* มุมโค้ง */
+    margin-top: 10px; /* ระยะห่างด้านบน */
+}

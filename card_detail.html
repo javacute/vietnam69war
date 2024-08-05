@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลเชิงลึกของการ์ด</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ข้อมูลเชิงลึกของการ์ด</h1>
+        <div id="card-detail"></div>
+        <a href="all_cards.html" class="button">กลับไปยังการ์ดทั้งหมด</a>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const cardIndex = urlParams.get('card');
+
+        const cardDescriptions = [
+        { description: 'เหตุการณ์สงครามเวียดนาม: การรบในป่าฝน', power: 10, image: '10.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การโจมตีทางอากาศ', power: 9, image: '9.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การต่อสู้ในเมือง', power: 8, image: '8.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การปะทะที่แนวรบ', power: 7, image: '7.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การทิ้งระเบิด', power: 6, image: '6.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การช่วยเหลือผู้บาดเจ็บ', power: 5, image: '5.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การสู้รบของทหาร', power: 4, image: '4.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การเดินทางข้ามแม่น้ำ', power: 3, image: '3.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การป้องกันฐานที่มั่น', power: 2, image: '2.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การสนับสนุนจากพลเรือน', power: 1, image: '1.png' },
+    ];
+
+        const cardDetail = document.getElementById('card-detail');
+        const card = cardDescriptions[cardIndex];
+
+        cardDetail.innerHTML = `
+            <h2>${card.description}</h2>
+            <p>คะแนน: ${card.power}</p>
+            <p>รายละเอียด: ที่นี่สามารถเติมข้อมูลเชิงลึกเกี่ยวกับการ์ดนี้ได้</p>
+        `;
+    </script>
+</body>
+</html>

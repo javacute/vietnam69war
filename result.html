@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกมการ์ดสงครามเวียดนาม</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>จบเกม</h1>
+        <h2>คะแนนสุดท้าย</h2>
+        <div id="final-score"></div>
+        <button id="scoreboard-button" class="button">ตารางคะแนน</button>
+        <div id="scoreboard" style="display: none;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>รอบที่เล่น</th>
+                        <th>การ์ดที่ออก (ผู้เล่น 1)</th>
+                        <th>คะแนนการ์ด (ผู้เล่น 1)</th>
+                        <th>การ์ดที่ออก (ผู้เล่น 2)</th>
+                        <th>คะแนนการ์ด (ผู้เล่น 2)</th>
+                        <th>ผู้ได้แต้ม</th>
+                    </tr>
+                </thead>
+                <tbody id="scoreboard-body">
+                    <!-- รายละเอียดคะแนนจะถูกเพิ่มที่นี่ -->
+                </tbody>
+            </table>
+        </div>
+        <a href="index.html" class="button">เล่นอีกครั้ง</a>
+    </div>
+    <script>
+        const finalScore = localStorage.getItem('finalScore');
+        const roundDetails = JSON.parse(localStorage.getItem('roundDetails'));
+        const cardDescriptions = [
+        { description: 'เหตุการณ์สงครามเวียดนาม: การรบในป่าฝน', power: 10, image: '10.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การโจมตีทางอากาศ', power: 9, image: '9.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การต่อสู้ในเมือง', power: 8, image: '8.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การปะทะที่แนวรบ', power: 7, image: '7.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การทิ้งระเบิด', power: 6, image: '6.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การช่วยเหลือผู้บาดเจ็บ', power: 5, image: '5.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การสู้รบของทหาร', power: 4, image: '4.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การเดินทางข้ามแม่น้ำ', power: 3, image: '3.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การป้องกันฐานที่มั่น', power: 2, image: '2.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การสนับสนุนจากพลเรือน', power: 1, image: '1.png' },
+    ];
+
+        document.getElementById('final-score').innerText = finalScore;
+
+        document.getElementById('scoreboard-button').addEventListener('click', () => {
+            const scoreboardBody = document.getElementById('scoreboard-body');
+            scoreboardBody.innerHTML = '';
+
+            roundDetails.forEach((detail, index) => {
+                const player1CardPower = detail.player1Card.power;
+                const player2CardPower = detail.player2Card.power;
+                const winner = player1CardPower > player2CardPower ? 'ผู้เล่น 1' : player1CardPower < player2CardPower ? 'ผู้เล่น 2' : 'เสมอ';
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${detail.player1Card.description}</td>
+                    <td>${player1CardPower}</td>
+                    <td>${detail.player2Card.description}</td>
+                    <td>${player2CardPower}</td>
+                    <td>${winner}</td>
+                `;
+                scoreboardBody.appendChild(row);
+            });
+
+            document.getElementById('scoreboard').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
