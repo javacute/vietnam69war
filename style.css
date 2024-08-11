@@ -24,6 +24,10 @@ h2 {
     color: #ff6f20; /* Orange color */
 }
 
+h3,h4,h5 {
+    color: #dd0000; /* \ color */
+}
+
 ol {
     padding-left: 20px;
 }

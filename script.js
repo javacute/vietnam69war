@@ -15,38 +15,60 @@ document.addEventListener('DOMContentLoaded', () => {
     let player1Score = 0;
     let player2Score = 0;
     const roundDetails = []; // เพื่อเก็บข้อมูลการ์ดในแต่ละรอบ
+    const maxDraws = 10; // จำนวนครั้งสูงสุดที่สามารถจั่วการ์ดได้
+    let drawsRemaining = maxDraws; // ตัวนับสำหรับการจั่วการ์ดที่เหลืออยู่
 
-    document.getElementById('draw-card').addEventListener('click', () => {
-        const player1CardIndex = Math.floor(Math.random() * cardDescriptions.length);
-        const player2CardIndex = Math.floor(Math.random() * cardDescriptions.length);
+    const drawCardButton = document.getElementById('draw-card');
+    const remainingDrawsElement = document.getElementById('remaining-draws');
 
-        const player1Card = cardDescriptions[player1CardIndex];
-        const player2Card = cardDescriptions[player2CardIndex];
+    // แสดงจำนวนการจั่วการ์ดที่เหลือ
+    remainingDrawsElement.innerText = `การจั่วการ์ดที่เหลือ: ${drawsRemaining}`;
 
-        // แสดงข้อมูลการ์ดและภาพ
-        document.getElementById('player1-card').innerHTML = `${player1Card.description} (พลัง: ${player1Card.power})<br><img src="${player1Card.image}" class="card-image" alt="Card Image">`;
-        document.getElementById('player2-card').innerHTML = `${player2Card.description} (พลัง: ${player2Card.power})<br><img src="${player2Card.image}" class="card-image" alt="Card Image">`;
+    drawCardButton.addEventListener('click', () => {
+        if (drawsRemaining > 0) {
+            const player1CardIndex = Math.floor(Math.random() * cardDescriptions.length);
+            const player2CardIndex = Math.floor(Math.random() * cardDescriptions.length);
 
-        // บันทึกข้อมูลรอบ
-        roundDetails.push({
-            round: roundDetails.length + 1,
-            player1Card: player1Card,
-            player2Card: player2Card
-        });
+            const player1Card = cardDescriptions[player1CardIndex];
+            const player2Card = cardDescriptions[player2CardIndex];
 
-        if (player1Card.power > player2Card.power) {
-            player1Score++;
-        } else if (player2Card.power > player1Card.power) {
+            // แสดงข้อมูลการ์ดและภาพ
+            document.getElementById('player1-card').innerHTML = `${player1Card.description} (พลัง: ${player1Card.power})<br><img src="${player1Card.image}" class="card-image" alt="Card Image">`;
+            document.getElementById('player2-card').innerHTML = `${player2Card.description} (พลัง: ${player2Card.power})<br><img src="${player2Card.image}" class="card-image" alt="Card Image">`;
+
+            // บันทึกข้อมูลรอบ
+            roundDetails.push({
+                round: roundDetails.length + 1,
+                player1Card: player1Card,
+                player2Card: player2Card
+            });
+
+            if (player1Card.power > player2Card.power) {
+                player1Score++;
+                document.getElementById('player1-score').innerText = `ชนะ`;
+                document.getElementById('player2-score').innerText = `แพ้`;
+            } else if (player2Card.power > player1Card.power) {
+                player2Score++;
+                document.getElementById('player1-score').innerText = `แพ้`;
+                document.getElementById('player2-score').innerText = `ชนะ`;
+            
+        } else if (player2Card.power = player1Card.power) {
             player2Score++;
+            document.getElementById('player1-score').innerText = `เสมอ`;
+            document.getElementById('player2-score').innerText = `เสมอ`;
         }
 
-        document.getElementById('player1-score').innerText = `คะแนน: ${player1Score}`;
-        document.getElementById('player2-score').innerText = `คะแนน: ${player2Score}`;
+            // ลดจำนวนครั้งที่สามารถจั่วการ์ดได้
+            drawsRemaining--;
+            remainingDrawsElement.innerText = `การจั่วการ์ดที่เหลือ: ${drawsRemaining}`;
 
-        if (roundDetails.length === cardDescriptions.length) {
-            localStorage.setItem('finalScore', `ผู้เล่น 1: ${player1Score} - ผู้เล่น 2: ${player2Score}`);
-            localStorage.setItem('roundDetails', JSON.stringify(roundDetails));
-            document.getElementById('finish-game').style.display = 'block';
+            // ตรวจสอบว่าการจั่วการ์ดถึงจำนวนสูงสุดหรือไม่
+            if (drawsRemaining === 0 || roundDetails.length === cardDescriptions.length) {
+                drawCardButton.disabled = true; // ปิดการใช้งานปุ่มจั่วการ์ด
+                localStorage.setItem('finalScore', `ผู้เล่น 1: ${player1Score} - ผู้เล่น 2: ${player2Score}`);
+                localStorage.setItem('roundDetails', JSON.stringify(roundDetails));
+                document.getElementById('finish-game').style.display = 'block';
+            }
         }
     });
 });
