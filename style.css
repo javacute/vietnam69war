@@ -126,36 +126,30 @@ th {
     margin-top: 20px;
 }
 
-.marquee-wrapper {
+.marquee-container {
     position: fixed;
     bottom: 0;
     width: 100%;
-    overflow: hidden;
     background-color: #000;
     color: #fff;
-    z-index: 1000;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-.marquee-content {
-    display: flex;
-    width: 200%;
-    animation: marqueeAnimation 20s linear infinite;
-    padding: 10px 0;
+.marquee {
+    display: inline-block;
+    padding: 10px;
+    animation: marquee 10s linear infinite;
 }
 
-@keyframes marqueeAnimation {
+@keyframes marquee {
     0% {
-        transform: translateX(0%);
+        transform: translateX(100%);
     }
     100% {
-        transform: translateX(-50%);
+        transform: translateX(-100%);
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .marquee-content {
-        animation: marqueeAnimation 15s linear infinite;
-    }
-}
 
 
