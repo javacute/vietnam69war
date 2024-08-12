@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     const cardDescriptions = [
-        { description: 'เหตุการณ์สงครามเวียดนาม: การรบในป่าฝน', power: 10, image: '10.png' },
-        { description: 'เหตุการณ์สงครามเวียดนาม: การโจมตีทางอากาศ', power: 9, image: '9.png' },
-        { description: 'เหตุการณ์สงครามเวียดนาม: การต่อสู้ในเมือง', power: 8, image: '8.png' },
-        { description: 'เหตุการณ์สงครามเวียดนาม: การปะทะที่แนวรบ', power: 7, image: '7.png' },
-        { description: 'เหตุการณ์สงครามเวียดนาม: การทิ้งระเบิด', power: 6, image: '6.png' },
-        { description: 'เหตุการณ์สงครามเวียดนาม: การช่วยเหลือผู้บาดเจ็บ', power: 5, image: '5.png' },
-        { description: 'เหตุการณ์สงครามเวียดนาม: การสู้รบของทหาร', power: 4, image: '4.png' },
-        { description: 'เหตุการณ์สงครามเวียดนาม: การเดินทางข้ามแม่น้ำ', power: 3, image: '3.png' },
-        { description: 'เหตุการณ์สงครามเวียดนาม: การป้องกันฐานที่มั่น', power: 2, image: '2.png' },
-        { description: 'เหตุการณ์สงครามเวียดนาม: การสนับสนุนจากพลเรือน', power: 1, image: '1.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การรบในป่าฝน', power: 10, image: '103.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การโจมตีทางอากาศ', power: 9, image: '93.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การต่อสู้ในเมือง', power: 8, image: '83.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การปะทะที่แนวรบ', power: 7, image: '73.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การทิ้งระเบิด', power: 6, image: '63.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การช่วยเหลือผู้บาดเจ็บ', power: 5, image: '53.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การสู้รบของทหาร', power: 4, image: '43.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การเดินทางข้ามแม่น้ำ', power: 3, image: '33.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การป้องกันฐานที่มั่น', power: 2, image: '23.png' },
+        { description: 'เหตุการณ์สงครามเวียดนาม: การสนับสนุนจากพลเรือน', power: 1, image: '13.png' },
     ];
 
     let player1Score = 0;
@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const roundDetails = []; // เพื่อเก็บข้อมูลการ์ดในแต่ละรอบ
     const maxDraws = 10; // จำนวนครั้งสูงสุดที่สามารถจั่วการ์ดได้
     let drawsRemaining = maxDraws; // ตัวนับสำหรับการจั่วการ์ดที่เหลืออยู่
+    const player1ScoreDisplay = document.getElementById('player1-total-score');
+    const player2ScoreDisplay = document.getElementById('player2-total-score');
 
     const drawCardButton = document.getElementById('draw-card');
     const remainingDrawsElement = document.getElementById('remaining-draws');
@@ -53,10 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('player2-score').innerText = `ชนะ`;
             
         } else if (player2Card.power = player1Card.power) {
-            player2Score++;
             document.getElementById('player1-score').innerText = `เสมอ`;
             document.getElementById('player2-score').innerText = `เสมอ`;
         }
+
+        player1ScoreDisplay.innerText = `คะแนนรวม: ${player1Score}`;
+        player2ScoreDisplay.innerText = `คะแนนรวม: ${player2Score}`;
 
             // ลดจำนวนครั้งที่สามารถจั่วการ์ดได้
             drawsRemaining--;
@@ -65,10 +69,20 @@ document.addEventListener('DOMContentLoaded', () => {
             // ตรวจสอบว่าการจั่วการ์ดถึงจำนวนสูงสุดหรือไม่
             if (drawsRemaining === 0 || roundDetails.length === cardDescriptions.length) {
                 drawCardButton.disabled = true; // ปิดการใช้งานปุ่มจั่วการ์ด
-                localStorage.setItem('finalScore', `ผู้เล่น 1: ${player1Score} - ผู้เล่น 2: ${player2Score}`);
+                if (player1Score > player2Score) {
+                    localStorage.setItem('finalScore', `ผู้เล่น 1: [${player1Score}][ชนะ!!] - ผู้เล่น 2: [${player2Score}][แพ้]`);
+                } else if (player1Score < player2Score) {
+                    localStorage.setItem('finalScore', `ผู้เล่น 1: [${player1Score}][แพ้] - ผู้เล่น 2: [${player2Score}][ชนะ!!]`);
+                
+                } else if (player1Score = player2Score) {
+                    localStorage.setItem('finalScore', `ผู้เล่น 1: [${player1Score}][เสมอ] - ผู้เล่น 2: [${player2Score}][เสมอ]`);
+                }
                 localStorage.setItem('roundDetails', JSON.stringify(roundDetails));
                 document.getElementById('finish-game').style.display = 'block';
             }
         }
     });
 });
+
+
+
