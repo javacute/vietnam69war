@@ -126,41 +126,36 @@ th {
     margin-top: 20px;
 }
 
-.marquee-container {
+.marquee-wrapper {
     position: fixed;
     bottom: 0;
     width: 100%;
+    overflow: hidden;
     background-color: #000;
     color: #fff;
-    overflow: hidden;
-    white-space: nowrap;
     z-index: 1000;
 }
 
-.marquee {
-    display: inline-block;
+.marquee-content {
+    display: flex;
+    width: 200%;
+    animation: marqueeAnimation 20s linear infinite;
     padding: 10px 0;
-    animation: marquee 20s linear infinite;
-    white-space: nowrap;
 }
 
-.marquee span {
-    display: inline-block;
-    padding-right: 100%;
-}
-
-@keyframes marquee {
+@keyframes marqueeAnimation {
     0% {
-        transform: translateX(100%);
+        transform: translateX(0%);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-50%);
     }
 }
 
 @media only screen and (max-width: 768px) {
-    .marquee {
-        animation: marquee 15s linear infinite; /* Adjust the speed for smaller screens */
+    .marquee-content {
+        animation: marqueeAnimation 15s linear infinite;
     }
 }
+
 
