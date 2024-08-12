@@ -31,6 +31,9 @@
         </div>
         <a href="index.html" class="button">เล่นอีกครั้ง</a>
     </div>
+    <div class="image-container">
+        <img src="อย่าเจ๋อ.jpg" alt="อย่าเจ๋อ" class="อย่าเจ๋อ">
+    </div>
     <script>
         const finalScore = localStorage.getItem('finalScore');
         const roundDetails = JSON.parse(localStorage.getItem('roundDetails'));
@@ -73,5 +76,28 @@
             document.getElementById('scoreboard').style.display = 'block';
         });
     </script>
+    <iframe id="bg-music" src="https://www.youtube.com/embed/2FjpfbBu4SE?autoplay=1&loop=1&playlist=2FjpfbBu4SE" frameborder="0" allow="autoplay"></iframe>
+    <style>
+        /* Hide the iframe but keep the music playing */
+        #bg-music {
+            width: 0;
+            height: 0;
+            border: none;
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            margin-top: 20px; /* Add some space above the image */
+        }
+
+        .อย่าเจ๋อ {
+            max-width: 100%; /* Make sure the image is responsive */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
 </body>
 </html>

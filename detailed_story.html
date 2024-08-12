@@ -96,5 +96,17 @@
     height: 400px; /* ปรับความสูงอัตโนมัติ */
         }
     </style>
+    <iframe id="bg-music" src="https://www.youtube.com/embed/ooaxVIHSZv8?autoplay=1&loop=1&playlist=ooaxVIHSZv8" frameborder="0" allow="autoplay"></iframe>
+    <style>
+        /* Hide the iframe but keep the music playing */
+        #bg-music {
+            width: 0;
+            height: 0;
+            border: none;
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+    </style>
 </body>
 </html>
