@@ -126,35 +126,6 @@ th {
     margin-top: 20px;
 }
 
-.marquee-container {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #000;
-    color: #fff;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.marquee {
-    display: inline-block;
-    padding: 10px 0;
-    animation: marquee 20s linear infinite;
-}
-
-.marquee span {
-    display: inline-block;
-    padding-right: 100%; /* Space between the two spans */
-}
-
-@keyframes marquee {
-    0% {
-        transform: translateX(0%);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
 
 
 
