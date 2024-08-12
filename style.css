@@ -138,18 +138,24 @@ th {
 
 .marquee {
     display: inline-block;
-    padding: 10px;
-    animation: marquee 10s linear infinite;
+    padding: 10px 0;
+    animation: marquee 20s linear infinite;
+}
+
+.marquee span {
+    display: inline-block;
+    padding-right: 100%; /* Space between the two spans */
 }
 
 @keyframes marquee {
     0% {
-        transform: translateX(100%);
+        transform: translateX(0%);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-50%);
     }
 }
+
 
 
 
