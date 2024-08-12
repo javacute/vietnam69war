@@ -134,25 +134,33 @@ th {
     color: #fff;
     overflow: hidden;
     white-space: nowrap;
+    z-index: 1000;
 }
 
 .marquee {
     display: inline-block;
     padding: 10px 0;
     animation: marquee 20s linear infinite;
+    white-space: nowrap;
 }
 
 .marquee span {
     display: inline-block;
-    padding-right: 100%; /* Space between the two spans */
+    padding-right: 100%;
 }
 
 @keyframes marquee {
     0% {
-        transform: translateX(0%);
+        transform: translateX(100%);
     }
     100% {
-        transform: translateX(-50%);
+        transform: translateX(-100%);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .marquee {
+        animation: marquee 15s linear infinite; /* Adjust the speed for smaller screens */
     }
 }
 
