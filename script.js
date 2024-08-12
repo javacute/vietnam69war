@@ -84,10 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const marqueeText = document.querySelector('.marquee span');
-    marqueeText.textContent = 'Welcome to the Vietnam War Card Game! |  ยินดีต้อนรับสู่เกมการ์ดสงครามเวียดนาม! | ขอบคุณที่เข้ามาเล่นเกมของเรา!';
-});
+
 
 
 
